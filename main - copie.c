@@ -7,7 +7,7 @@
 
 int main(void){
 char name[40];
-char confirmation[3];
+char confirmation[4];
 int cash;
 int jour;
 int actionsAlphabet;
@@ -40,10 +40,10 @@ scanf("%d",&actionsMicrosoft);
 
  printf("Vous souhaitez acheter %d actions Alphabet, %d Facebook, %d actions Apple et %d actions Microsoft.\n",
  actionsAlphabet, actionsFacebook, actionsApple, actionsMicrosoft);
- /*printf("Tapez ok pour confirmer\n");
- scanf("%s", confirmation);
+ printf("Tapez ok pour confirmer\n");
+ scanf("%s", &confirmation);
 
-if (strcmp(confirmation,"ok")){
+/*if (strcmp(confirmation,"ok")){
     printf("Merci.\n");
 } else {
 printf("Indiquez le nombre d'actions des entreprises suivantes que vous souhaitez acheter\n");
@@ -56,7 +56,6 @@ scanf("%d",&actionsApple);
 printf("Microsoft:\n");
 scanf("%d",&actionsMicrosoft);
 }*/
-
 
   
 int Alphabet(int argc, char *argv[])
@@ -136,9 +135,9 @@ int Facebook(int argc, char *argv[])
 }
 
 printf("Choisir le jour d'achat");
-scanf(%d, &jourAchat);
+scanf("%d", &jourAchat);
 printf("Choisir le jour de vente");
-scanf(%d, &jourVente);
+scanf("%d", &jourVente);
 
 valeurAchatAlphabet = valeurAlphabet[jourAchat];
 valeurAchatApple = valeurApple[jourAchat];
@@ -152,14 +151,13 @@ valeurVenteMicrosoft = valeurMicrosoft[jourVente];
 valeurVenteFacebook = valeurFacebook[jourVente];
 
 printf("Votre portefeuille vaut: %f euros le %d Novembre.\n", portfeuille(&valeurAlphabet, &valeurFacebook, &valeurApple, &valeurMicrosoft,
-&actionsAlphabet, &actionsFacebook, &actionsApple, &actionsMicrosfot), jour);
+&actionsAlphabet, &actionsFacebook, &actionsApple, &actionsMicrosoft), jour);
 printf("Vous detenez %d actions Alphabet, %d Facebook, %d actions Apple et %d actions Microsoft.\n",
 actionsAlphabet, actionsFacebook, actionsApple, actionsMicrosoft);
 printf("Votre score est de: %f pourcent.\n", PORTEFEUILLE (valeurAlphabet, valeurFacebook, valeurApple, valeurMicrosoft, actionsAlphabet, actionsFacebook, actionsApple, actionsMicrosoft)+cashDispo(&cash)-cash/cashDispo(&cash));
 
 
 FILE* fichier = NULL;
-    int age = 0;
  
     fichier = fopen("score.txt", "r+");
  
@@ -169,7 +167,7 @@ if (fichier != NULL)
 
     fprintf(fichier, "Score: %f le %s", PORTEFEUILLE (valeurAlphabet, valeurFacebook, valeurApple, valeurMicrosoft, actionsAlphabet, actionsFacebook, actionsApple, actionsMicrosoft)+cashDispo(&cash)-cash/cashDispo(&cash), __DATE__);
 
-    printf(“%s, votre score le %s etait de %f pourcent.\n”,name,  __DATE__, PORTEFEUILLE (valeurAlphabet, valeurFacebook, valeurApple, valeurMicrosoft, actionsAlphabet, actionsFacebook, actionsApple, actionsMicrosoft)+cashDispo(&cash)-cash/cashDispo(&cash)
+    printf("%s, votre score le %s etait de %f pourcent.\n",name,  __DATE__, PORTEFEUILLE (valeurAlphabet, valeurFacebook, valeurApple, valeurMicrosoft, actionsAlphabet, actionsFacebook, actionsApple, actionsMicrosoft)+cashDispo(&cash)-cash/cashDispo(&cash));
     fclose(fichier);
 } 
 
