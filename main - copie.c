@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -13,7 +14,10 @@ int actionsAlphabet;
 int actionsFacebook;
 int actionsApple;
 int actionsMicrosoft;
-char url[400];
+int jourAchat ;
+int jourVente ;
+float valeurAchatAlphabet, valeurAchatApple, valeurAchatAmazon, valeurAchatMicrosoft, valeurAchatFacebook;
+float valeurVenteAlphabet, valeurVenteApple, valeurVenteAmazon, valeurVenteMicrosoft, valeurVenteFacebook;
 
 float portfeuille(float *valeurAlphabet, float *valeurFacebook, float *valeurApple, float *valeurMicrosoft,
 float *actionsAlphabet, float *actionsFacebook, float *actionsApple, float *actionsMicrosfot);
@@ -53,26 +57,8 @@ printf("Microsoft:\n");
 scanf("%d",&actionsMicrosoft);
 }*/
 
-int Amazon(int argc, char *argv[])
-{
-   FILE* fichier_Amazon = NULL;
-   float valeurAmazon[30]={0}; //Tableau des 30 cotations
 
-   fichier_Amazon = fopen{"Amazon.csv", "r"};
-
-   if(fichier_Amazon != NULL)
-   {
-       int compteur = 0;
-       for (compteur = 0; compteur < 30; compteur++)
-       {
-           fscanf(fichier, "%f", &valeurAmazon[compteur]);
-       }
-       fclose(fichier_Amazon);
-   }
-   return 0;
-}
-
-}
+  
 int Alphabet(int argc, char *argv[])
 {
    FILE* fichier_Alphabet = NULL;
@@ -149,7 +135,21 @@ int Facebook(int argc, char *argv[])
    return 0;
 }
 
+printf("Choisir le jour d'achat");
+scanf(%d, &jourAchat);
+printf("Choisir le jour de vente");
+scanf(%d, &jourVente);
 
+valeurAchatAlphabet = valeurAlphabet[jourAchat];
+valeurAchatApple = valeurApple[jourAchat];
+valeurAchatAmazon = valeurAmazon[jourAchat];
+valeurAchatMicrosoft = valeurMicrosoft[jourAchat];
+valeurAchatFacebook = valeurFacebook[jourAchat];
+valeurVenteAlphabet = valeurAlphabet[jourVente];
+valeurVenteApple = valeurApple[jourVente];
+valeurVenteAmazon = valeurAmazon[jourVente];
+valeurVenteMicrosoft = valeurMicrosoft[jourVente];
+valeurVenteFacebook = valeurFacebook[jourVente];
 
 printf("Votre portefeuille vaut: %f euros le %d Novembre.\n", portfeuille(&valeurAlphabet, &valeurFacebook, &valeurApple, &valeurMicrosoft,
 &actionsAlphabet, &actionsFacebook, &actionsApple, &actionsMicrosfot), jour);
@@ -157,7 +157,24 @@ printf("Vous detenez %d actions Alphabet, %d Facebook, %d actions Apple et %d ac
 actionsAlphabet, actionsFacebook, actionsApple, actionsMicrosoft);
 printf("Votre score est de: %f pourcent.\n", PORTEFEUILLE (valeurAlphabet, valeurFacebook, valeurApple, valeurMicrosoft, actionsAlphabet, actionsFacebook, actionsApple, actionsMicrosoft)+cashDispo(&cash)-cash/cashDispo(&cash));
 
+
+FILE* fichier = NULL;
+    int age = 0;
+ 
+    fichier = fopen("score.txt", "r+");
+ 
+if (fichier != NULL)
+{
+ //on enregistre le score du joueur 
+
+    fprintf(fichier, "Score: %f le %s", PORTEFEUILLE (valeurAlphabet, valeurFacebook, valeurApple, valeurMicrosoft, actionsAlphabet, actionsFacebook, actionsApple, actionsMicrosoft)+cashDispo(&cash)-cash/cashDispo(&cash), __DATE__);
+
+    printf(“%s, votre score le %s etait de %f pourcent.\n”,name,  __DATE__, PORTEFEUILLE (valeurAlphabet, valeurFacebook, valeurApple, valeurMicrosoft, actionsAlphabet, actionsFacebook, actionsApple, actionsMicrosoft)+cashDispo(&cash)-cash/cashDispo(&cash)
+    fclose(fichier);
+} 
+
 return 0;
+
 }
 
 
@@ -168,6 +185,5 @@ return (*valeurAlphabet * *actionsAlphabet)+(*valeurFacebook* *actionsFacebook)+
 }*/
 
 float cashDispo(int *cash){
-    return *cash-PORTEFEUILLE (valeurAlphabet, valeurFacebook, valeurApple, valeurMicrosoft, actionsAlphabet, actionsFacebook, actionsApple, actionsMicrosoft);
+    return *cash - PORTEFEUILLE (valeurAlphabet, valeurFacebook, valeurApple, valeurMicrosoft, actionsAlphabet, actionsFacebook, actionsApple, actionsMicrosoft);
 }
-
